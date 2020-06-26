@@ -1,0 +1,29 @@
+<div class="modal fade" id="formatTexteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLongTitle">Enter an Format text</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <div id="editorDiv" name="editorDiv"
+      style="width: 100%; height: 600px; overflow: auto; border: solid 1px black" tabindex="0"
+      class="lean-rooster rooster-editor" role="textbox" contenteditable="true" aria-label="Discussion"
+      aria-multiline="true" data-placeholder="Add a description">
+    </div>
+    <div class="ribbon">
+      <button class="testButton" id="bold" title="Toggle Bold"><img src="./svg/bold.svg" /></button>
+      <button class="testButton" id="italic" title="Toggle Italic"><img src="./svg/italic.svg" /></button>
+      <button class="textButton" id="underline" title="Toggle Underline"><img src="./svg/underline.svg" /></button>
+      <button class="textButton" id="font_size" title="Toggle Font Size"><img src="./svg/fontsize.svg" /></button>
+    </div>
+    </div>
+    <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+    <button type="button" class="btn btn-primary" id="saveButton" >Save changes</button>
+    </div>
+  </div>
+  </div>
+</div>
