@@ -1,55 +1,233 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
     <link rel="stylesheet" href="site.css" />
     <title>Development</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"></head>
-  <body>
-    <div class="container">
-   
-      <div class="row">
-        <button class="btn" id="edit_button">Edit</button>
-      </div>
-      <div class="row">
-        <textarea rows="6" id="source">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-        </textarea>
-      </div>
+  <body>
+    <div class="form-row">
+      <section class="col-12 py-3">
+        <section id="nav-tabs">
+          <ul class="nav nav-tabs md-tabs">
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning"
+                id="greeting-tab"
+                data-toggle="tab"
+                href="#greeting-pane"
+                role="tab"
+                aria-controls="greeting-pane"
+                aria-selected="false"
+              >
+                Select Intake Greeting
+              </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning active"
+                id="location-tab"
+                data-toggle="tab"
+                href="#location-pane"
+                role="tab"
+                aria-controls="location-pane"
+                aria-selected="true"
+              >
+                Location Lookup Instructions
+              </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning"
+                id="employee-tab"
+                data-toggle="tab"
+                href="#employee-pane"
+                role="tab"
+                aria-controls="employee-pane"
+                aria-selected="true"
+              >
+                Employee Lookup Instructions
+              </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning"
+                id="vehicle-tab"
+                data-toggle="tab"
+                href="#vehicle-pane"
+                role="tab"
+                aria-controls="vehicle-pane"
+                aria-selected="true"
+              >
+                Vehicle Lookup Instructions
+              </a>
+            </li>
+          </ul>
+        </section>
+        <div class="tab-content card pt-3">
+          <div
+            class="tab-pane fade"
+            id="greeting-pane"
+            role="tabpanel"
+            aria-labelledby="greeting-tab"
+          >
+            <div class="form-row">
+              <div class="col-12 pt-1">
+                <textarea
+                  placeholder="Greeting"
+                  type="text"
+                  class="md-textarea form-control"
+                  rows="3"
+                  data-bind="value: Greeting"
+                ></textarea>
+                <div
+                  class="invalid-feedback"
+                  data-bind="validationMessage:$data.Validations.Greeting"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade active show"
+            id="location-pane"
+            role="tabpanel"
+            aria-labelledby="location-tab"
+          >
+            <div class="form-row">
+              <div class="col-12 pt-1">
+                <textarea
+                  placeholder="Location Lookup Instructions"
+                  type="text"
+                  class="md-textarea form-control"
+                  rows="3"
+                  data-bind="value: LocationInstruction"
+                ></textarea>
+                <div
+                  class="invalid-feedback"
+                  data-bind="validationMessage:$data.Validations.JurisClient"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="employee-pane"
+            role="tabpanel"
+            aria-labelledby="employee-tab"
+          >
+            <div class="form-row">
+              <div class="col-12 pt-1">
+                <textarea
+                  placeholder="Employee Lookup Instructions"
+                  type="text"
+                  class="md-textarea form-control"
+                  rows="3"
+                  data-bind="value: EmployeeInstruction"
+                ></textarea>
+                <div
+                  class="invalid-feedback"
+                  data-bind="validationMessage:$data.Validations.JurisClient"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="tab-pane fade"
+            id="vehicle-pane"
+            role="tabpanel"
+            aria-labelledby="vehicle-tab"
+          >
+            <div class="form-row">
+              <div class="col-12 pt-1">
+                <textarea
+                  placeholder="Vehicle Lookup Instructions"
+                  type="text"
+                  class="md-textarea form-control"
+                  rows="3"
+                  data-bind="value: VehicleInstruction"
+                ></textarea>
+                <div
+                  class="invalid-feedback"
+                  data-bind="validationMessage:$data.Validations.VehicleInstruction"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="modal fade" id="formatTexteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div
+      class="modal fade"
+      id="formatTexteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Enter an Format text</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">
+              Enter an Format text
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div
+              id="editorDiv"
+              name="editorDiv"
+              style="
+                width: 100%;
+                height: 600px;
+                overflow: auto;
+                border: solid 1px black;
+              "
+              tabindex="0"
+              class="lean-rooster rooster-editor"
+              role="textbox"
+              contenteditable="true"
+              aria-label="Discussion"
+              aria-multiline="true"
+              data-placeholder="Add a description"
+            ></div>
+            <div class="ribbon" id="ribbon">
+              <button class="button" id="bold" title="Toggle Bold">
+                <img src="./svg/bold.svg" />
+              </button>
+              <button class="button" id="italic" title="Toggle Italic">
+                <img src="./svg/italic.svg" />
+              </button>
+              <button class="button" id="underline" title="Toggle Underline">
+                <img src="./svg/underline.svg" />
+              </button>
+              <button class="button" id="font_up" title="Toggle Font Size">
+                <img src="./svg/fontsizeup.svg" />
+              </button>
+              <button class="button" id="font_down" title="Toggle Font Size">
+                <img src="./svg/fontsizedown.svg" />
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            <button type="button" class="btn btn-primary" id="saveButton">
+              Save changes
+            </button>
+          </div>
         </div>
-        <div class="modal-body">
-        <div id="editorDiv" name="editorDiv"
-          style="width: 100%; height: 600px; overflow: auto; border: solid 1px black" tabindex="0"
-          class="lean-rooster rooster-editor" role="textbox" contenteditable="true" aria-label="Discussion"
-          aria-multiline="true" data-placeholder="Add a description">
-        </div>
-        <div class="ribbon">
-          <button class="button" id="bold" title="Toggle Bold"><img src="./svg/bold.svg" /></button>
-          <button class="button" id="italic" title="Toggle Italic"><img src="./svg/italic.svg" /></button>
-          <button class="button" id="underline" title="Toggle Underline"><img src="./svg/underline.svg" /></button>
-          <button class="button" id="font_up" title="Toggle Font Size"><img src="./svg/fontsizeup.svg" /></button>
-          <button class="button" id="font_down" title="Toggle Font Size"><img src="./svg/fontsizedown.svg" /></button>
-          <span id="f_size" style="display:none">
-            <button class="button" id="font_size" title="Toggle Font Size"><img src="./svg/fontsize.svg" /></button>
-            <select id="font_size_list" data-bind="options: listItems"></select>
-          </span>
-        </div>
-        </div>
-        <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-        <button type="button" class="btn btn-primary" id="saveButton" >Save changes</button>
-        </div>
-      </div>
       </div>
     </div>
     <script src="main.js"></script>
