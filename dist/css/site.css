@@ -1,6 +1,17 @@
 .ribbon {
+  display: flex;
+  flex-direction: row;
   height: 38px;
   white-space: nowrap;
+  justify-content: flex-start;
+}
+
+.ribbon-bar {
+  justify-content: flex-end;
+}
+
+#saveButton {
+  align-items: right;
 }
 
 .textButton {
@@ -20,7 +31,7 @@
   border-radius: 4px;
   border-style: none;
   padding: 0;
-  margin: 2px;
+  margin: 0;
   padding: 0;
   background-color: white;
   cursor: pointer;
@@ -32,38 +43,9 @@
   height: 38px;
 }
 .button:hover {
-  background-color: #cdebee;
+  background-color: #e0edee;
 }
 .button.checked {
-  background-color: #00bbcc;
+  background-color: #dde2e2;
 }
 
-.dropDownButton {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  overflow: visible;
-}
-
-.dropDown {
-  z-index: 1;
-  border: solid 1px #00bbcc;
-  display: inline-block;
-  background-color: white;
-  padding: 4px;
-  box-shadow: 2px 2px 4px gray;
-  position: absolute;
-  top: 14px;
-  left: 0;
-}
-
-.dropDownItem {
-  cursor: pointer;
-  padding: 2px;
-  white-space: nowrap;
-  min-width: 60px;
-  
-}
-.dropDownItem:hover {
-  background-color: #B9BCE3;
-}

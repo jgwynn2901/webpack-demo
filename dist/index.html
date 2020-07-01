@@ -6,7 +6,9 @@
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.css"
     />
-    <link rel="stylesheet" href="site.css" />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/editor.css" />
+    <link rel="stylesheet" href="css/rooster.css" />
     <title>Development</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -24,7 +26,7 @@
                 href="#greeting-pane"
                 role="tab"
                 aria-controls="greeting-pane"
-                aria-selected="false"
+                aria-selected="true"
               >
                 Select Intake Greeting
               </a>
@@ -37,7 +39,7 @@
                 href="#location-pane"
                 role="tab"
                 aria-controls="location-pane"
-                aria-selected="true"
+                aria-selected="false"
               >
                 Location Lookup Instructions
               </a>
@@ -50,7 +52,7 @@
                 href="#employee-pane"
                 role="tab"
                 aria-controls="employee-pane"
-                aria-selected="true"
+                aria-selected="false"
               >
                 Employee Lookup Instructions
               </a>
@@ -63,7 +65,7 @@
                 href="#vehicle-pane"
                 role="tab"
                 aria-controls="vehicle-pane"
-                aria-selected="true"
+                aria-selected="false"
               >
                 Vehicle Lookup Instructions
               </a>
@@ -84,7 +86,7 @@
                   type="text"
                   class="md-textarea form-control"
                   rows="3"
-                  data-bind="value: Greeting"
+                  data-bind="html: Greeting"
                 ></textarea>
                 <div
                   class="invalid-feedback"
@@ -100,13 +102,15 @@
             aria-labelledby="location-tab"
           >
             <div class="form-row">
-              <div class="col-12 pt-1">
+              <div
+                class="col-12 pt-1 html-editor rooster-wrapper rooster-editor"
+              >
                 <textarea
                   placeholder="Location Lookup Instructions"
                   type="text"
                   class="md-textarea form-control"
                   rows="3"
-                  data-bind="value: LocationInstruction"
+                  data-bind="html: LocationInstruction"
                 ></textarea>
                 <div
                   class="invalid-feedback"
@@ -128,7 +132,7 @@
                   type="text"
                   class="md-textarea form-control"
                   rows="3"
-                  data-bind="value: EmployeeInstruction"
+                  data-bind="html: EmployeeInstruction"
                 ></textarea>
                 <div
                   class="invalid-feedback"
@@ -150,7 +154,7 @@
                   type="text"
                   class="md-textarea form-control"
                   rows="3"
-                  data-bind="value: VehicleInstruction"
+                  data-bind="html: VehicleInstruction"
                 ></textarea>
                 <div
                   class="invalid-feedback"
@@ -189,43 +193,39 @@
             <div
               id="editorDiv"
               name="editorDiv"
-              style="
-                width: 100%;
-                height: 600px;
-                overflow: auto;
-                border: solid 1px black;
-              "
               tabindex="0"
-              class="lean-rooster rooster-editor"
+              class="html-editor rooster-wrapper rooster-editor"
               role="textbox"
               contenteditable="true"
               aria-label="Discussion"
               aria-multiline="true"
               data-placeholder="Add a description"
             ></div>
-            <div class="ribbon" id="ribbon">
-              <button class="button" id="bold" title="Toggle Bold">
-                <img src="./svg/bold.svg" />
-              </button>
-              <button class="button" id="italic" title="Toggle Italic">
-                <img src="./svg/italic.svg" />
-              </button>
-              <button class="button" id="underline" title="Toggle Underline">
-                <img src="./svg/underline.svg" />
-              </button>
-              <button class="button" id="font_up" title="Toggle Font Size">
-                <img src="./svg/fontsizeup.svg" />
-              </button>
-              <button class="button" id="font_down" title="Toggle Font Size">
-                <img src="./svg/fontsizedown.svg" />
-              </button>
-            </div>
           </div>
           <div class="modal-footer">
-            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-            <button type="button" class="btn btn-primary" id="saveButton">
-              Save changes
-            </button>
+            <div class="ribbon" id="ribbon">
+              <div class="button" id="bold" title="Toggle Bold">
+                <img src="./svg/bold.svg" />
+              </div>
+              <div class="button" id="italic" title="Toggle Italic">
+                <img src="./svg/italic.svg" />
+              </div>
+              <div class="button" id="underline" title="Toggle Underline">
+                <img src="./svg/underline.svg" />
+              </div>
+              <div class="button" id="font_up" title="Toggle Font Size">
+                <img src="./svg/fontsizeup.svg" />
+              </div>
+              <div class="button" id="font_down" title="Toggle Font Size">
+                <img src="./svg/fontsizedown.svg" />
+              </div>
+            </div>
+            <div class="ribbon-bar">
+              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+              <button type="button" class="btn btn-primary" id="saveButton">
+                Save changes
+              </button>
+            </div>
           </div>
         </div>
       </div>
