@@ -45,57 +45,75 @@ $(document).ready(function() {
         case "font_down":
           onSetFont(1);
           break;
+        case "bullet":
+          roosterjs.toggleBullet(editor);
+          break;
+        case "numbering":
+          roosterjs.toggleNumbering(editor);
+          break;
+        case "indent":
+          onSetIndent(0);
+          break;
+        case "outdent":
+          onSetIndent(1);
+          break;
+        case "superscript":
+          roosterjs.toggleSuperscript(editor);
+          break;  
+        case "subscript":
+          roosterjs.toggleSubscript(editor);
+          break;    
+        case "strikethrough":
+          roosterjs.toggleStrikethrough(editor);
+          break;  
+          case "undo":
+            editor.undo();
+            break;
+          case "redo":
+            editor.redo();
+            break;
       }
     }updateButtons();
   });
-
   
-
   function onSetFont(direction) {
     roosterjs.changeFontSize(editor, direction);
+  }
+
+  function onSetIndent(direction) {
+    roosterjs.setIndentation(editor, direction);
   }
 
   function model(inst) {
     var self = this;
     self.LocationInstruction = ko.observable(inst);
-    self.Greeting = ko.observable("<em>Greeting</em>");
-    self.EmployeeInstruction = ko.observable("<b>Employee</b> Instruction");
-    self.VehicleInstruction = ko.observable("<i>Vehicle</i> Instruction");
+    self.Greeting = ko.observable("Greeting");
+    self.EmployeeInstruction = ko.observable("Employee Instruction");
+    self.VehicleInstruction = ko.observable("Vehicle Instruction");
     self.target = "";
     self.updateInstruction = function(text) {
-        switch (self.target.id) {
-          case "location-tab":
-            self.LocationInstruction(text);
-            break;
-          case "employee-tab":
-            self.EmployeeInstruction(text);
-            break;
-          case "greeting-tab":
-            self.Greeting(text);
-            break;
-          case "vehicle-tab":
-            self.VehicleInstruction(text);
-            break;
-        } 
+      console.log('update ' + self.target.id)
+      switch (self.target.id) {
+        case "Location-tab":
+          self.LocationInstruction(text);
+          break;
+        case "Employee-tab":
+          self.EmployeeInstruction(text);
+          break;
+        case "Greetings-tab":
+          self.Greeting(text);
+          break;
+        case "Vehicle-tab":
+          self.VehicleInstruction(text);
+          break;
+      } 
     };
-  }
-
-  function toggleChecked(button, isChecked) {
-    let $b = $("#" + button);
-    console.log(button, isChecked);
-    if (isChecked) {
-      if(!$b.hasClass(checked)) {
-        $b.addClass(checked);
-      }
-    } else {
-        $b.removeClass(checked);
-    }
   }
 
   var viewModel = new model(testData);
   ko.applyBindings(viewModel);
 
-  function updateButtons () {
+  function updateButtons () { //TODO: this is a function of the editor state not the button events
     roosterjs.getFormatState(editor).isBold ?
       $('#bold').addClass(checked) : $('#bold').removeClass(checked);
 
@@ -104,33 +122,35 @@ $(document).ready(function() {
       
     roosterjs.getFormatState(editor).isItalic ?
       $('#italic').addClass(checked) : $('#italic').removeClass(checked);
+
+    
   }
 
   function getContent(id) {
     switch(id) {
-      case "greeting-tab":
+      case "Greetings-tab":
         return viewModel.Greeting();
-      case "location-tab":
+      case "Location-tab":
         return viewModel.LocationInstruction();  
-      case "employee-tab":
+      case "Employee-tab":
         return viewModel.EmployeeInstruction();
-      case "vehicle-tab":
+      case "Vehicle-tab":
         return viewModel.VehicleInstruction();  
     }
   }
 
   function setContent(id, data) {
     switch(id) {
-      case "greeting-tab":
+      case "Greetings-tab":
         viewModel.Greeting(data);
         break;
-      case "location-tab":
+      case "Location-tab":
         viewModel.LocationInstruction(data);
         break;  
-      case "employee-tab":
+      case "Employee-tab":
         viewModel.EmployeeInstruction(data);
         break;
-      case "vehicle-tab":
+      case "Vehicle-tab":
         viewModel.VehicleInstruction(data);
         break;  
     }
@@ -139,9 +159,16 @@ $(document).ready(function() {
   $("#nav-tabs").on("click", function (e) {
     e.preventDefault();
     if (e.target != e.currentTarget) {
-      viewModel.target = e.target.id;
-      editor.setContent(getContent(e.target.id));
+      viewModel.target = e.target.id || e.target.parentNode.id;
+      editor.setContent(getContent(viewModel.target));
+      let modalTitle = viewModel.target.split('-')[0];
+      if (modalTitle != "Greetings") {
+        modalTitle += " Lookup";
+      }
+      modalTitle += " Instructions";
+      document.getElementById('modalLongTitle').innerHTML = modalTitle;
       $("#formatTexteModal").modal("show");
+
     }
   });
   

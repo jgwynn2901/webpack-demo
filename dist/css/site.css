@@ -49,3 +49,19 @@
   background-color: #dde2e2;
 }
 
+.textarea {
+  -moz-appearance: textfield-multiline;
+  -webkit-appearance: textarea;
+  border: 1px solid gray;
+  height: 100%;
+  overflow: auto;
+  padding: 2px;
+  resize: both;
+  width: 100%;
+}
+
+#editorDiv {
+  height:100%;
+  border: solid 1px #0bc;
+  
+}

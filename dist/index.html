@@ -6,6 +6,7 @@
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.css"
     />
+    <link rel="stylesheet" href="css/mdb.css" />
     <link rel="stylesheet" href="css/site.css" />
     <link rel="stylesheet" href="css/editor.css" />
     <link rel="stylesheet" href="css/rooster.css" />
@@ -16,12 +17,11 @@
   <body>
     <div class="form-row">
       <section class="col-12 py-3">
-        <section id="nav-tabs">
+        <section>
           <ul class="nav nav-tabs md-tabs">
             <li class="nav-item waves-effect waves-light">
               <a
                 class="nav-link ignore-nav-warning"
-                id="greeting-tab"
                 data-toggle="tab"
                 href="#greeting-pane"
                 role="tab"
@@ -34,7 +34,6 @@
             <li class="nav-item waves-effect waves-light">
               <a
                 class="nav-link ignore-nav-warning active"
-                id="location-tab"
                 data-toggle="tab"
                 href="#location-pane"
                 role="tab"
@@ -47,7 +46,6 @@
             <li class="nav-item waves-effect waves-light">
               <a
                 class="nav-link ignore-nav-warning"
-                id="employee-tab"
                 data-toggle="tab"
                 href="#employee-pane"
                 role="tab"
@@ -60,7 +58,6 @@
             <li class="nav-item waves-effect waves-light">
               <a
                 class="nav-link ignore-nav-warning"
-                id="vehicle-tab"
                 data-toggle="tab"
                 href="#vehicle-pane"
                 role="tab"
@@ -72,98 +69,104 @@
             </li>
           </ul>
         </section>
-        <div class="tab-content card pt-3">
-          <div
-            class="tab-pane fade"
-            id="greeting-pane"
-            role="tabpanel"
-            aria-labelledby="greeting-tab"
-          >
-            <div class="form-row">
-              <div class="col-12 pt-1">
-                <textarea
-                  placeholder="Greeting"
-                  type="text"
-                  class="md-textarea form-control"
-                  rows="3"
-                  data-bind="html: Greeting"
-                ></textarea>
+        <section id="nav-tabs">
+          <div class="tab-content card pt-3">
+            <div
+              class="tab-pane fade"
+              id="greeting-pane"
+              role="tabpanel"
+              aria-labelledby="Greetings-tab"
+            >
+              <div class="form-row">
+                <div class="col-12 pt-1">
+                  <span
+                    id="Greetings-tab"
+                    placeholder="Greeting"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: Greeting"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.Greeting"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade active show"
+              id="location-pane"
+              role="tabpanel"
+              aria-labelledby="Location-tab"
+            >
+              <div class="form-row">
                 <div
-                  class="invalid-feedback"
-                  data-bind="validationMessage:$data.Validations.Greeting"
-                ></div>
+                  class="col-12 pt-1 html-editor rooster-wrapper rooster-editor"
+                >
+                  <span                
+                    id="Location-tab"
+                    placeholder="Location Lookup Instructions"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: LocationInstruction"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.JurisClient"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="employee-pane"
+              role="tabpanel"
+              aria-labelledby="Employee-tab"
+            >
+              <div class="form-row">
+                <div class="col-12 pt-1">
+                  <span
+                    id="Employee-tab"
+                    placeholder="Employee Lookup Instructions"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: EmployeeInstruction"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.JurisClient"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="vehicle-pane"
+              role="tabpanel"
+              aria-labelledby="Vehicle-tab"
+            >
+              <div class="form-row">
+                <div class="col-12 pt-1">
+                  <span
+                    id="Vehicle-tab"
+                    placeholder="Vehicle Lookup Instructions"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: VehicleInstruction"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.VehicleInstruction"
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
-          <div
-            class="tab-pane fade active show"
-            id="location-pane"
-            role="tabpanel"
-            aria-labelledby="location-tab"
-          >
-            <div class="form-row">
-              <div
-                class="col-12 pt-1 html-editor rooster-wrapper rooster-editor"
-              >
-                <textarea
-                  placeholder="Location Lookup Instructions"
-                  type="text"
-                  class="md-textarea form-control"
-                  rows="3"
-                  data-bind="html: LocationInstruction"
-                ></textarea>
-                <div
-                  class="invalid-feedback"
-                  data-bind="validationMessage:$data.Validations.JurisClient"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="employee-pane"
-            role="tabpanel"
-            aria-labelledby="employee-tab"
-          >
-            <div class="form-row">
-              <div class="col-12 pt-1">
-                <textarea
-                  placeholder="Employee Lookup Instructions"
-                  type="text"
-                  class="md-textarea form-control"
-                  rows="3"
-                  data-bind="html: EmployeeInstruction"
-                ></textarea>
-                <div
-                  class="invalid-feedback"
-                  data-bind="validationMessage:$data.Validations.JurisClient"
-                ></div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="tab-pane fade"
-            id="vehicle-pane"
-            role="tabpanel"
-            aria-labelledby="vehicle-tab"
-          >
-            <div class="form-row">
-              <div class="col-12 pt-1">
-                <textarea
-                  placeholder="Vehicle Lookup Instructions"
-                  type="text"
-                  class="md-textarea form-control"
-                  rows="3"
-                  data-bind="html: VehicleInstruction"
-                ></textarea>
-                <div
-                  class="invalid-feedback"
-                  data-bind="validationMessage:$data.Validations.VehicleInstruction"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
       </section>
     </div>
     <div
@@ -171,15 +174,14 @@
       id="formatTexteModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="exampleModalCenterTitle"
+      aria-labelledby="EditModalCenterTitle"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">
-              Enter an Format text
-            </h5>
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-notify modal-info" role="document" aria-labelledby="modalEditor" aria-hidden="true">
+        <div class="modal-content" style="height:800px;width:100%">
+          <div class="modal-header white-text" id="modalHeader">
+            <h5 class="modal-title" id="modalLongTitle"></h5>
+
             <button
               type="button"
               class="close"
@@ -202,24 +204,52 @@
               data-placeholder="Add a description"
             ></div>
           </div>
-          <div class="modal-footer">
-            <div class="ribbon" id="ribbon">
-              <div class="button" id="bold" title="Toggle Bold">
-                <img src="./svg/bold.svg" />
-              </div>
-              <div class="button" id="italic" title="Toggle Italic">
-                <img src="./svg/italic.svg" />
-              </div>
-              <div class="button" id="underline" title="Toggle Underline">
-                <img src="./svg/underline.svg" />
-              </div>
-              <div class="button" id="font_up" title="Toggle Font Size">
-                <img src="./svg/fontsizeup.svg" />
-              </div>
-              <div class="button" id="font_down" title="Toggle Font Size">
-                <img src="./svg/fontsizedown.svg" />
-              </div>
+          <div class="ribbon" id="ribbon">
+            <div class="button" id="bold" title="Toggle Bold">
+              <img src="./svg/bold.svg" />
             </div>
+            <div class="button" id="italic" title="Toggle Italic">
+              <img src="./svg/italic.svg" />
+            </div>
+            <div class="button" id="underline" title="Toggle Underline">
+              <img src="./svg/underline.svg" />
+            </div>
+            <div class="button" id="font_up" title="Toggle Font Size">
+              <img src="./svg/fontsizeup.svg" />
+            </div>
+            <div class="button" id="font_down" title="Toggle Font Size">
+              <img src="./svg/fontsizedown.svg" />
+            </div>
+            <div class="button" id="bullet" title="Toggle Bullets">
+              <img src="./svg/bullets.svg" />
+            </div>
+            <div class="button" id="numbering" title="Toggle Numbering">
+              <img src="./svg/numbering.svg" />
+            </div>
+            <div class="button" id="indent" title="Increase Indent">
+              <img src="./svg/indent.svg" />
+            </div>
+            <div class="button" id="outdent" title="Decrease Indent">
+              <img src="./svg/outdent.svg" />
+            </div>
+            <div class="button" id="strikethrough" title="Toggle Strikethrough">
+              <img src="./svg/strikethrough.svg" />
+            </div>
+            <div class="button" id="superscript" title="Toggle Superscript">
+              <img src="./svg/superscript.svg" />
+            </div>
+            <div class="button" id="subscript" title="Toggle Subscript">
+              <img src="./svg/subscript.svg" />
+            </div>
+            <div class="button" id="undo" title="Undo">
+              <img src="./svg/undo.svg" />
+            </div>
+            <div class="button" id="redo" title="Redo">
+              <img src="./svg/redo.svg" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            
             <div class="ribbon-bar">
               <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
               <button type="button" class="btn btn-primary" id="saveButton">
