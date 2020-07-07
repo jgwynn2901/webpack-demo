@@ -202,6 +202,7 @@
               contenteditable="true"
               aria-label="Discussion"
               aria-multiline="true"
+              style="width:100%"
             ></textarea>
           </div>
           <div class="ribbon" id="ribbon">
@@ -294,12 +295,12 @@
           if (selection) { // make sure it doesn't error if nothing is selected
             const defaultSize = window.getComputedStyle(editor.editableElement, null).getPropertyValue('font-size');
             selBookmark = editor.composer.selection.getBookmark();
-            let styleStr = selBookmark.endContainer?.parentElement.getAttribute('style') || "";
-            let size = (styleStr) ? wysihtml5.quirks.styleParser.parseFontSize(styleStr) : defaultSize;
+            var styleStr = selBookmark.endContainer ? selBookmark.endContainer.parentElement.getAttribute('style') || "" : "";
+            var size = (styleStr) ? wysihtml5.quirks.styleParser.parseFontSize(styleStr) : defaultSize;
             console.log (size);
 
             if (size && !(/^\s*$/).test(size)) {
-              let nr = parseInt(size, 10);
+              var nr = parseInt(size, 10);
               increase ? nr += 5 : nr -= 5;
               setTimeout(function() {
                 editor.composer.selection.setBookmark(selBookmark);
@@ -373,7 +374,7 @@
           if (e.target != e.currentTarget) {
             viewModel.target = e.target.id || e.target.parentNode.id;
             editor.setValue(getContent(viewModel.target));
-            let modalTitle = viewModel.target.split('-')[0];
+            var modalTitle = viewModel.target.split('-')[0];
             if (modalTitle != "Greetings") {
               modalTitle += " Lookup";
             }
@@ -381,6 +382,12 @@
             document.getElementById('modalLongTitle').innerHTML = modalTitle;
             $("#formatTexteModal").modal("show");
           }
+        });
+        $("#saveButton").on("click", (e) => {
+          e.preventDefault();
+          console.log('saving to ' + viewModel.target);
+          setContent(viewModel.target, editor.getValue());
+          $("#formatTexteModal").modal("hide");
         });
       });
     </script>
