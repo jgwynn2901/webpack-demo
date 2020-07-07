@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="css/mdb.css" />
+    <link rel="stylesheet" href="css/editor.css" />
+    <link rel="stylesheet" href="css/rooster.css" />
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/wysiwig.css" />
+    <title>Development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+
+  <body>
+    <div class="form-row">
+      <section class="col-12 py-3">
+        <section>
+          <ul class="nav nav-tabs md-tabs">
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning"
+                data-toggle="tab"
+                href="#greeting-pane"
+                role="tab"
+                aria-controls="greeting-pane"
+                aria-selected="true"
+              >
+                Select Intake Greeting
+              </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning active"
+                data-toggle="tab"
+                href="#location-pane"
+                role="tab"
+                aria-controls="location-pane"
+                aria-selected="false"
+              >
+                Location Lookup Instructions
+              </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning"
+                data-toggle="tab"
+                href="#employee-pane"
+                role="tab"
+                aria-controls="employee-pane"
+                aria-selected="false"
+              >
+                Employee Lookup Instructions
+              </a>
+            </li>
+            <li class="nav-item waves-effect waves-light">
+              <a
+                class="nav-link ignore-nav-warning"
+                data-toggle="tab"
+                href="#vehicle-pane"
+                role="tab"
+                aria-controls="vehicle-pane"
+                aria-selected="false"
+              >
+                Vehicle Lookup Instructions
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section id="nav-tabs">
+          <div class="tab-content card pt-3">
+            <div
+              class="tab-pane fade"
+              id="greeting-pane"
+              role="tabpanel"
+              aria-labelledby="Greetings-tab"
+            >
+              <div class="form-row">
+                <div class="col-12 pt-1">
+                  <span
+                    id="Greetings-tab"
+                    placeholder="Greeting"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: Greeting"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.Greeting"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade active show"
+              id="location-pane"
+              role="tabpanel"
+              aria-labelledby="Location-tab"
+            >
+              <div class="form-row">
+                <div
+                  class="col-12 pt-1 html-editor rooster-wrapper rooster-editor"
+                >
+                  <span                
+                    id="Location-tab"
+                    placeholder="Location Lookup Instructions"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: LocationInstruction"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.JurisClient"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="employee-pane"
+              role="tabpanel"
+              aria-labelledby="Employee-tab"
+            >
+              <div class="form-row">
+                <div class="col-12 pt-1">
+                  <span
+                    id="Employee-tab"
+                    placeholder="Employee Lookup Instructions"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: EmployeeInstruction"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.JurisClient"
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="tab-pane fade"
+              id="vehicle-pane"
+              role="tabpanel"
+              aria-labelledby="Vehicle-tab"
+            >
+              <div class="form-row">
+                <div class="col-12 pt-1">
+                  <span
+                    id="Vehicle-tab"
+                    placeholder="Vehicle Lookup Instructions"
+                    type="text"
+                    class="md-textarea form-control textarea"
+                    rows="3"
+                    data-bind="html: VehicleInstruction"
+                  ></span>
+                  <div
+                    class="invalid-feedback"
+                    data-bind="validationMessage:$data.Validations.VehicleInstruction"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+    <div
+      class="modal fade"
+      id="formatTexteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="EditModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg modal-notify modal-info" role="document" aria-labelledby="modalEditor" aria-hidden="true">
+        <div class="modal-content" style="height:800px;width:100%">
+          <div class="modal-header white-text" id="modalHeader">
+            <h5 class="modal-title" id="modalLongTitle"></h5>
+
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <textarea
+              id="editorDiv"
+              name="editorDiv"
+              tabindex="0"
+              class="textarea"
+              role="textbox"
+              contenteditable="true"
+              aria-label="Discussion"
+              aria-multiline="true"
+            ></textarea>
+          </div>
+          <div class="ribbon" id="ribbon">
+            <div class="button" data-wysihtml5-command="bold" title="Toggle Bold" >
+              <img src="./svg/bold.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="italic" title="Toggle Italic">
+              <img src="./svg/italic.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="underline" title="Toggle Underline">
+              <img src="./svg/underline.svg" />
+            </div>
+            <div class="button" id="font_up" title="Toggle Font Size">
+              <img src="./svg/fontsizeup.svg" />
+            </div>
+            <div class="button" id="font_down" title="Toggle Font Size">
+              <img src="./svg/fontsizedown.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="insertUnorderedList" title="Toggle Bullets">
+              <img src="./svg/bullets.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="insertOrderedList" title="Toggle Numbering">
+              <img src="./svg/numbering.svg" />
+            </div>
+            <div class="button" id="indent" title="Increase Indent">
+              <img src="./svg/indent.svg" />
+            </div>
+            <div class="button" id="outdent" title="Decrease Indent">
+              <img src="./svg/outdent.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="strikethrough" title="Toggle Strikethrough">
+              <img src="./svg/strikethrough.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="superscript" title="Toggle Superscript">
+              <img src="./svg/superscript.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="subscript" title="Toggle Subscript">
+              <img src="./svg/subscript.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="undo" title="Undo">
+              <img src="./svg/undo.svg" />
+            </div>
+            <div class="button" data-wysihtml5-command="redo" title="Redo">
+              <img src="./svg/redo.svg" />
+            </div>
+            <div class="button" data-wysihtml5-action="change_view" title="HTML">
+              <img src="./svg/code.svg" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            
+            <div class="ribbon-bar">
+              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+              <button type="button" class="btn btn-primary" id="saveButton">
+                Save changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="../node_modules/knockout/build/output/knockout-latest.js"></script>
+    <script src="./wysihtml.js"></script>
+    <script src="./wysihtml-toolbar.js"></script>
+    <script src="parser_rules/advanced_unwrap.js"></script>
+    <script>
+      $(document).ready(function() {
+        const testData =
+  "What is needed: We need the ability to format text in the areas of Select Intake Greeting, Location Lookup InstructionsEmployee Lookup Instructions, and Vehicle Lookup Instructions. At a minimum, the following formatting options are needed: Bold, Font Size, Underline, and Break (going to the next line using the enter  It would be ideal to have a formatting tool, such as the mockup below, but we can also use the same formatting techniques that are available to us in View Logic.";
+      
+        var editor = new wysihtml5.Editor("editorDiv", { // id of textarea element
+          toolbar:      "ribbon", // id of toolbar element
+          parserRules:  wysihtml5ParserRules // defined in parser rules set 
+        });
+
+        $("#font_up").on('click', (e) => {
+          e.preventDefault();
+          setFontSize(true);
+        })
+        $("#font_down").on('click', (e) => {
+          e.preventDefault();
+          setFontSize(false);
+        })
+
+        function setFontSize(increase) {
+          const selection = window.getSelection();
+          if (selection) { // make sure it doesn't error if nothing is selected
+            const defaultSize = window.getComputedStyle(editor.editableElement, null).getPropertyValue('font-size');
+            selBookmark = editor.composer.selection.getBookmark();
+            let styleStr = selBookmark.endContainer?.parentElement.getAttribute('style') || "";
+            let size = (styleStr) ? wysihtml5.quirks.styleParser.parseFontSize(styleStr) : defaultSize;
+            console.log (size);
+
+            if (size && !(/^\s*$/).test(size)) {
+              let nr = parseInt(size, 10);
+              increase ? nr += 5 : nr -= 5;
+              setTimeout(function() {
+                editor.composer.selection.setBookmark(selBookmark);
+                editor.composer.commands.exec("fontSizeStyle", nr.toString() + "px");
+                selBookmark = null;
+              },0);
+            } 
+          }
+        }
+
+        function model(inst) {
+          var self = this;
+          self.LocationInstruction = ko.observable(inst);
+          self.Greeting = ko.observable("Greeting");
+          self.EmployeeInstruction = ko.observable("Employee Instruction");
+          self.VehicleInstruction = ko.observable("Vehicle Instruction");
+          self.target = "";
+          self.updateInstruction = function(text) {
+            console.log('update ' + self.target.id)
+            switch (self.target.id) {
+              case "Location-tab":
+                self.LocationInstruction(text);
+                break;
+              case "Employee-tab":
+                self.EmployeeInstruction(text);
+                break;
+              case "Greetings-tab":
+                self.Greeting(text);
+                break;
+              case "Vehicle-tab":
+                self.VehicleInstruction(text);
+                break;
+            } 
+          };
+        }
+
+        var viewModel = new model(testData);
+        ko.applyBindings(viewModel);
+
+        function getContent(id) {
+          switch(id) {
+            case "Greetings-tab":
+              return viewModel.Greeting();
+            case "Location-tab":
+              return viewModel.LocationInstruction();  
+            case "Employee-tab":
+              return viewModel.EmployeeInstruction();
+            case "Vehicle-tab":
+              return viewModel.VehicleInstruction();  
+          }
+        }
+
+        function setContent(id, data) {
+          switch(id) {
+            case "Greetings-tab":
+              viewModel.Greeting(data);
+              break;
+            case "Location-tab":
+              viewModel.LocationInstruction(data);
+              break;  
+            case "Employee-tab":
+              viewModel.EmployeeInstruction(data);
+              break;
+            case "Vehicle-tab":
+              viewModel.VehicleInstruction(data);
+              break;  
+          }
+        }
+        $("#nav-tabs").on("click", function (e) {
+          e.preventDefault();
+          if (e.target != e.currentTarget) {
+            viewModel.target = e.target.id || e.target.parentNode.id;
+            editor.setValue(getContent(viewModel.target));
+            let modalTitle = viewModel.target.split('-')[0];
+            if (modalTitle != "Greetings") {
+              modalTitle += " Lookup";
+            }
+            modalTitle += " Instructions";
+            document.getElementById('modalLongTitle').innerHTML = modalTitle;
+            $("#formatTexteModal").modal("show");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
