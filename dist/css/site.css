@@ -6,6 +6,12 @@
   justify-content: flex-start;
 }
 
+.ribbon.button.hover {
+  background-color: #B9BCE3;
+}
+.ribbon.button.checked {
+  background-color: #B9BCE3;
+}
 .ribbon-bar {
   justify-content: flex-end;
 }

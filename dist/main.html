@@ -206,13 +206,13 @@
             ></textarea>
           </div>
           <div class="ribbon" id="ribbon">
-            <div class="button" data-wysihtml5-command="bold" title="Toggle Bold" >
+            <div class="button" data-wysihtml5-command="bold" id="bold" title="Toggle Bold" >
               <img src="./svg/bold.svg" />
             </div>
-            <div class="button" data-wysihtml5-command="italic" title="Toggle Italic">
+            <div class="button" data-wysihtml5-command="italic" id="italic" title="Toggle Italic">
               <img src="./svg/italic.svg" />
             </div>
-            <div class="button" data-wysihtml5-command="underline" title="Toggle Underline">
+            <div class="button" data-wysihtml5-command="underline" id="underline" title="Toggle Underline">
               <img src="./svg/underline.svg" />
             </div>
             <div class="button" id="font_up" title="Toggle Font Size">
@@ -284,18 +284,45 @@
         $("#font_up").on('click', (e) => {
           e.preventDefault();
           setFontSize(true);
-        })
+        });
+
         $("#font_down").on('click', (e) => {
           e.preventDefault();
           setFontSize(false);
-        })
+        });
+
+        function updateStates(composer) {
+          var value;
+          
+          if (composer.commands.state('bold')) {
+            $('#bold').addClass('checked');
+          } else {
+            $('#bold').removeClass('checked');
+          }
+          
+          if (composer.commands.state('italic')) {
+            $('#italic').addClass('checked');
+          } else {
+            $('#italic').removeClass('checked');
+          }
+
+          if (composer.commands.state('underline')) {
+            $('#underline').addClass('checked');
+          } else {
+            $('#underline').removeClass('checked');
+          }
+        };
+        // Listen to events and update menu
+        editor.on("interaction", function() {
+          updateStates(this.composer);
+        });
 
         function setFontSize(increase) {
           const selection = window.getSelection();
           if (selection) { // make sure it doesn't error if nothing is selected
             const defaultSize = window.getComputedStyle(editor.editableElement, null).getPropertyValue('font-size');
             selBookmark = editor.composer.selection.getBookmark();
-            var styleStr = selBookmark.endContainer ? selBookmark.endContainer.parentElement.getAttribute('style') || "" : "";
+            var styleStr = selBookmark.endContainer ? selBookmark.endContainer.parentElement.getAttribute('style') || "" : "s";
             var size = (styleStr) ? wysihtml5.quirks.styleParser.parseFontSize(styleStr) : defaultSize;
             console.log (size);
 
