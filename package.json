@@ -23,7 +23,7 @@
     "html-webpack-plugin": "^4.3.0",
     "jquery": "^3.5.1",
     "knockout": "^3.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "popper.js": "^1.16.1",
     "roosterjs": "^7.12.1",
     "roosterjs-editor-api": "^7.12.1",
