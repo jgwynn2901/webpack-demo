@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/rooster.css" />
     <link rel="stylesheet" href="css/site.css" />
     <link rel="stylesheet" href="css/wysiwig.css" />
+    <link rel="stylesheet" href="css/wysiwigDemo.css" />
     <title>Development</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -215,22 +216,57 @@
             <div class="button" data-wysihtml5-command="underline" id="underline" title="Toggle Underline">
               <img src="./svg/underline.svg" />
             </div>
-            <div class="button" id="font_up" title="Toggle Font Size">
+              <div class="button" id="font_up" title="Toggle Font Size">
               <img src="./svg/fontsizeup.svg" />
             </div>
             <div class="button" id="font_down" title="Toggle Font Size">
               <img src="./svg/fontsizedown.svg" />
             </div>
+            <div class="button" data-wysihtml-command="foreColorStyle" data-behavior="foreColor">
+              <img src="./svg/textcolor.svg">
+            </div>
+            <div data-wysihtml-dialog="foreColorStyle" class="edy-tb-dropdown edy-tb-color-modal" style="display: none;" >
+
+              <div class="edy-tb-color-tab-content">
+                <div class="edy-colorpicker">
+                  <div class="edy-colorpicker-colors" data-wysihtml5-command-group="foreColor">
+                    <div data-wysihtml5-command="foreColor" data-value="" style="border:1px solid #ccc;" unselectable="on">
+                      <svg width="100%" height="100%" style=" vertical-align: top;" class="no-color">
+                        <line x1="0" y1="100%" x2="100%" y2="0" style="stroke:rgba(255,0,0,0.8);stroke-width:1;"></line>
+                      </svg>
+                    </div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(255,255,255)" style="background-color: rgb(255,255,255);" class="colorpicker-color-bordered" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(192,192,192)" style="background-color: rgb(192,192,192);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(128,128,128)" style="background-color: rgb(128,128,128);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,255,255)" style="background-color: rgb(0,255,255);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0, 162, 255)" style="background-color: rgb(0, 162, 255);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,0,255)" style="background-color: rgb(0,0,255);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,0,128)" style="background-color: rgb(0,0,128);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,128,128)" style="background-color: rgb(0,128,128);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,128,0)" style="background-color: rgb(0,128,0);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(0,255,0)" style="background-color: rgb(0,255,0);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(255,255,0)" style="background-color: rgb(255,255,0);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(255,249,197)" style="background-color: rgb(255,249,197);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(128,128,0)" style="background-color: rgb(128,128,0);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(128,0,0)" style="background-color: rgb(128,0,0);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(255,0,0)" style="background-color: rgb(255,0,0);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(255,0,255)" style="background-color: rgb(255,0,255);" unselectable="on"></div>
+                    <div data-wysihtml5-command="foreColor" data-value="rgb(128,0,128)" style="background-color: rgb(128,0,128);" unselectable="on"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="button" data-wysihtml5-command="insertUnorderedList" title="Toggle Bullets">
               <img src="./svg/bullets.svg" />
             </div>
             <div class="button" data-wysihtml5-command="insertOrderedList" title="Toggle Numbering">
               <img src="./svg/numbering.svg" />
             </div>
-            <div class="button" id="indent" title="Increase Indent">
+            <div class="button" data-wysihtml5-command="indent" title="Increase Indent">
               <img src="./svg/indent.svg" />
             </div>
-            <div class="button" id="outdent" title="Decrease Indent">
+            <div class="button" data-wysihtml5-command="outdent" title="Decrease Indent">
               <img src="./svg/outdent.svg" />
             </div>
             <div class="button" data-wysihtml5-command="strikethrough" title="Toggle Strikethrough">
@@ -253,7 +289,6 @@
             </div>
           </div>
           <div class="modal-footer">
-            
             <div class="ribbon-bar">
               <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
               <button type="button" class="btn btn-primary" id="saveButton">
@@ -345,23 +380,6 @@
           self.EmployeeInstruction = ko.observable("Employee Instruction");
           self.VehicleInstruction = ko.observable("Vehicle Instruction");
           self.target = "";
-          self.updateInstruction = function(text) {
-            console.log('update ' + self.target.id)
-            switch (self.target.id) {
-              case "Location-tab":
-                self.LocationInstruction(text);
-                break;
-              case "Employee-tab":
-                self.EmployeeInstruction(text);
-                break;
-              case "Greetings-tab":
-                self.Greeting(text);
-                break;
-              case "Vehicle-tab":
-                self.VehicleInstruction(text);
-                break;
-            } 
-          };
         }
 
         var viewModel = new model(testData);
@@ -410,11 +428,29 @@
             $("#formatTexteModal").modal("show");
           }
         });
+
         $("#saveButton").on("click", (e) => {
           e.preventDefault();
           console.log('saving to ' + viewModel.target);
           setContent(viewModel.target, editor.getValue());
           $("#formatTexteModal").modal("hide");
+        });
+
+        $('[data-wysihtml5-command="foreColor"]').on("click", function(event) {
+          event.stopPropagation();
+          var color = $(event.target).data("value");
+          color && (editor.composer.commands.exec("foreColorStyle", color))
+        });
+
+        // color by style
+        $('[data-behavior="foreColor"]').on("click", function(event) {
+          event.stopPropagation(),
+          $('[data-behavior="foreColor"] + .edy-tb-color-modal').toggle(),
+          $("body").on("click", function(e) {
+              e.stopPropagation();
+              document.querySelector('[data-behavior="foreColor"] + .edy-tb-color-modal').contains(b.target) || 
+                ($('[data-behavior="foreColor"] + .edy-tb-color-modal').hide());
+          });
         });
       });
     </script>
